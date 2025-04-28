@@ -1,0 +1,39 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_bloc/modules/todo_modules.dart';
+
+// class Todo{
+//   final String title;
+//   Todo(this.title);
+// }
+//
+// class TodoState{
+//   final List<Todo> todos;
+//   TodoState({required this.todos});
+// }
+//
+// sealed class TodoEvent{}
+//
+// class AddTodo extends TodoEvent{}
+//
+// class CancelTodo extends TodoEvent{}
+//
+// class TodoBloc extends Bloc<TodoEvent,TodoState>{
+//   TodoBloc() : super(TodoState(todos: [])){
+//     on<AddTodo>((event, emit) {
+//
+//     },);
+//   }
+// }
+
+
+class TodoCubit extends Cubit<List<Todo>>{
+  TodoCubit() : super([]);
+
+  void addTodo(String title){
+    final todo = Todo(title: title, createdAt: DateTime.now());
+
+    state.add(todo);
+    print('todo added!!!');
+    emit(state);
+  }
+}
