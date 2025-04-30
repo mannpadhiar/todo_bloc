@@ -34,6 +34,12 @@ class TodoCubit extends Cubit<List<Todo>>{
 
     state.add(todo);
     print('todo added!!!');
-    emit(state);
+    emit([...state]);
+  }
+  
+  void removeTodo(String title,DateTime cDate){
+    final updatedList = List<Todo>.from(state);
+    updatedList.removeWhere((todo) => todo.title == title && todo.createdAt == cDate,);
+    emit(updatedList);
   }
 }

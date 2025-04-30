@@ -21,10 +21,12 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         children: [
           Text('Enter your todo :'),
-          TextFormField(
-            controller: titleController,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+          Expanded(
+            child: TextFormField(
+              controller: titleController,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+              ),
             ),
           ),
 
@@ -32,21 +34,24 @@ class _HomePageState extends State<HomePage> {
             onPressed: () {
               print('todo added');
               BlocProvider.of<TodoCubit>(context).addTodo(titleController.text.trim());
+              titleController.clear();
             },
             child: Text('ADD')
           ),
 
-          BlocBuilder<TodoCubit,List<Todo>>(
-            builder: (context, todos) => ListView.builder(
-              itemCount: todos.length,
-              itemBuilder : (context, index) {
-                final todo = todos[index];
-                
-                return ListTile(
-                  title: Text(todo.title),
-                  subtitle: Text(todo.createdAt.toString()),
-                );
-              },
+          Expanded(
+            child: BlocBuilder<TodoCubit,List<Todo>>(
+              builder: (context, todos) => ListView.builder(
+                itemCount: todos.length,
+                itemBuilder : (context, index) {
+                  final todo = todos[index];
+
+                  return ListTile(
+                    title: Text(todo.title),
+                    subtitle: Text(todo.createdAt.toString()),
+                  );
+                },
+              ),
             ),
           ),
         ],
