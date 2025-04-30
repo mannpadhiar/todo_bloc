@@ -42,4 +42,21 @@ class TodoCubit extends Cubit<List<Todo>>{
     updatedList.removeWhere((todo) => todo.title == title && todo.createdAt == cDate,);
     emit(updatedList);
   }
+
+  void updateTodo(String oldTitle,DateTime oldCDate,String newTitle,DateTime newCDate,){
+    final mainList = List<Todo>.from(state);
+    final index = mainList.indexWhere(
+          (todo) => todo.title == oldTitle && todo.createdAt == oldCDate,
+    );
+    mainList[index] = Todo(title: newTitle,createdAt: newCDate);
+    emit(mainList);
+  }
+}
+
+class IsUpdated extends Cubit<bool>{
+  IsUpdated() : super(false);
+
+  void setIsUpdated(bool update){
+    emit(update);
+  }
 }

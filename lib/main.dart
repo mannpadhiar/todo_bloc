@@ -14,8 +14,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return  BlocProvider(
-      create: (context) => TodoCubit(),
+    return  MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => TodoCubit(),),
+        BlocProvider(create: (_) => IsUpdated(),)
+      ],
       child: MaterialApp(
           title: 'Flutter Demo',
           theme: ThemeData(
