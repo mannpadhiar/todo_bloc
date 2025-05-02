@@ -18,8 +18,8 @@ import 'package:todo_bloc/modules/todo_modules.dart';
 // class CancelTodo extends TodoEvent{}
 //
 // class TodoBloc extends Bloc<TodoEvent,TodoState>{
-//   TodoBloc() : super(TodoState(todos: [])){
-//     on<AddTodo>((event, emit) {
+//   TodoBloc() : super((todos: [])){
+//     on<AddTodo>((event, emit)TodoState {
 //
 //     },);
 //   }
