@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_bloc/cubit/counter_cubit.dart';
+import 'package:todo_bloc/cubit/cubit_home_page.dart';
 import 'package:todo_bloc/home_page.dart';
 import 'package:todo_bloc/modules/todo_modules.dart';
 import 'package:todo_bloc/temp.dart';
@@ -18,7 +20,8 @@ class MyApp extends StatelessWidget {
     return  MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => TodoCubit(),),
-        BlocProvider(create: (_) => IsUpdated(),)
+        BlocProvider(create: (_) => IsUpdated(),),
+        BlocProvider(create: (_) => CounterCubit()),
       ],
       child: MaterialApp(
           title: 'Flutter Demo',
@@ -26,7 +29,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           ),
           // home: HomePage(),
-          home: Temp(),
+          home: CubitHomePage(),
         ),
     );
   }
