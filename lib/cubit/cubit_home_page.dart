@@ -19,10 +19,18 @@ class _CubitHomePageState extends State<CubitHomePage> {
 
           //Bloc builder is called multiple times when Bloc builder is executed....
           //so don't use navigation or popUp in the BlocBuilder
-          
-          BlocBuilder<CounterCubit,CounterState>(builder: (context, state) {
-            return Text(state.counterValue.toString());
-          },),
+
+          BlocConsumer<CounterCubit,CounterState>(
+            builder: (context, state) {
+              return Text(state.counterValue.toString());
+            },
+            listener: (context, state) {
+              if(state.isIncremented == true){
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Incremented')));
+              }else{
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Decremented')));
+              }
+            },),
           Row(
             children: [
               ElevatedButton(onPressed: () {
