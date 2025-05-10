@@ -6,7 +6,11 @@ class AuthInitial extends AuthState {
 
 }
 
-class AuthSuccess extends AuthState{}
+class AuthSuccess extends AuthState{
+  final String uid;
+
+  AuthSuccess({required this.uid});
+}
 
 class AuthFailure extends AuthState{
   final String errorMessage;
