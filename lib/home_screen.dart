@@ -17,7 +17,15 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: Text('Home Screen'),
       ),
-      body: Center(child: Text(authState.uid),),
+      body: Column(
+        children: [
+          Center(child: Text(authState.uid),),
+          SizedBox(height: 20,),
+          ElevatedButton(onPressed: () {
+            context.read<AuthBloc>().add(AuthLogOutRequested());
+          }, child: Text('Log Out')),
+        ],
+      ),
     );
   }
 }
