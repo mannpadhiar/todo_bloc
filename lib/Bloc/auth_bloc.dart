@@ -4,6 +4,13 @@ part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent,AuthState>{
+
+  @override
+  void onChange(Change<AuthState> change) {
+    super.onChange(change);
+    print('AuthBloc - $change');
+  }
+
   AuthBloc() : super(AuthInitial()) {
     on<AuthLoginRequested>((event, emit) async {
       emit(AuthLoading());
